@@ -484,7 +484,7 @@ endef
 
 define KernelPackage/crypto-lib-chacha20/x86_64
   KCONFIG+=CONFIG_CRYPTO_CHACHA20_X86_64
-  FILES+=$(LINUX_DIR)/arch/x86/crypto/chacha-x86_64.ko
+  FILES+=$(LINUX_DIR)/lib/crypto/libchacha.ko
 endef
 
 # Note that a non-neon fallback implementation is available on arm32 when
