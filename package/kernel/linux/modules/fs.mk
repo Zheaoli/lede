@@ -10,7 +10,7 @@ FS_MENU:=Filesystems
 define KernelPackage/fs-9p
   SUBMENU:=$(FS_MENU)
   TITLE:=Plan 9 Resource Sharing Support
-  DEPENDS:=+kmod-9pnet +LINUX_6_1:kmod-fs-netfs
+  DEPENDS:=+kmod-9pnet +LINUX_6_1:kmod-fs-netfs +LINUX_6_6:kmod-fs-netfs
   KCONFIG:=\
 	CONFIG_9P_FS \
 	CONFIG_9P_FS_POSIX_ACL=n \
@@ -130,9 +130,9 @@ define KernelPackage/fs-cifs
     +kmod-crypto-ccm \
     +kmod-crypto-ecb \
     +kmod-crypto-des \
-    +(LINUX_5_15||LINUX_6_1):kmod-asn1-decoder \
-    +(LINUX_5_15||LINUX_6_1):kmod-oid-registry \
-    +(LINUX_5_15||LINUX_6_1):kmod-dnsresolver
+    +(LINUX_5_15||LINUX_6_1||LINUX_6_6):kmod-asn1-decoder \
+    +(LINUX_5_15||LINUX_6_1||LINUX_6_6):kmod-oid-registry \
+    +(LINUX_5_15||LINUX_6_1||LINUX_6_6):kmod-dnsresolver
 endef
 
 define KernelPackage/fs-cifs/description
@@ -392,7 +392,7 @@ $(eval $(call KernelPackage,fs-msdos))
 define KernelPackage/fs-netfs
   SUBMENU:=$(FS_MENU)
   TITLE:=Network Filesystems support
-  DEPENDS:=@(LINUX_5_15||LINUX_6_1)
+  DEPENDS:=@(LINUX_5_15||LINUX_6_1||LINUX_6_6)
   KCONFIG:= CONFIG_NETFS_SUPPORT
   FILES:=$(LINUX_DIR)/fs/netfs/netfs.ko
   AUTOLOAD:=$(call AutoLoad,28,netfs)

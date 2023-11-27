@@ -77,6 +77,10 @@ ifdef CONFIG_LINUX_6_1
   DTS_CPPFLAGS += -DDTS_NO_LEGACY
 endif
 
+ifdef CONFIG_LINUX_6_6
+  DTS_CPPFLAGS += -DDTS_NO_LEGACY
+endif
+
 include $(SUBTARGET).mk
 
 $(eval $(call BuildImage))
